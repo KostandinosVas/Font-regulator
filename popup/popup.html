@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Font Regulator</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <div class="header-title">
+        <img
+          src="../icons/icon32.png"
+          alt=""
+          class="header-logo"
+          width="20"
+          height="20"
+        />
+        <span class="header-name">Font Regulator</span>
+      </div>
+      <div class="header-site">
+        <span class="site-badge" id="siteBadge" title="Current domain">—</span>
+      </div>
+      <label
+        class="toggle-label"
+        aria-label="Enable Font Regulator on this site"
+      >
+        <input type="checkbox" id="enabledToggle" checked />
+        <span class="toggle-track">
+          <span class="toggle-thumb"></span>
+        </span>
+      </label>
+    </header>
+
+    <!-- ===== DISABLED OVERLAY ===== -->
+    <div class="disabled-overlay" id="disabledOverlay" hidden>
+      <p>
+        Font Regulator is <strong>disabled</strong> on this site.<br />Toggle
+        the switch to enable it.
+      </p>
+    </div>
+
+    <!-- ===== MAIN CONTENT (shown when enabled) ===== -->
+    <main class="main" id="mainContent">
+      <!-- Element type tab bar -->
+      <nav class="tag-tabs" aria-label="Element type selector" role="tablist">
+        <button
+          class="tag-tab"
+          role="tab"
+          aria-selected="false"
+          data-tag="p"
+          tabindex="0"
+        >
+          p
+        </button>
+        <button
+          class="tag-tab"
+          role="tab"
+          aria-selected="false"
+          data-tag="h1"
+          tabindex="-1"
+        >
+          h1
+        </button>
+        <button
+          class="tag-tab"
+          role="tab"
+          aria-selected="false"
+          data-tag="h2"
+          tabindex="-1"
+        >
+          h2
+        </button>
+        <button
+          class="tag-tab"
+          role="tab"
+          aria-selected="false"
+          data-tag="h3"
+          tabindex="-1"
+        >
+          h3
+        </button>
+        <button
+          class="tag-tab"
+          role="tab"
+          aria-selected="false"
+          data-tag="h4"
+          tabindex="-1"
+        >
+          h4
+        </button>
+        <button
+          class="tag-tab"
+          role="tab"
+          aria-selected="false"
+          data-tag="h5"
+          tabindex="-1"
+        >
+          h5
+        </button>
+        <button
+          class="tag-tab"
+          role="tab"
+          aria-selected="false"
+          data-tag="h6"
+          tabindex="-1"
+        >
+          h6
+        </button>
+        <button
+          class="tag-tab"
+          role="tab"
+          aria-selected="false"
+          data-tag="span"
+          tabindex="-1"
+        >
+          span
+        </button>
+        <button
+          class="tag-tab"
+          role="tab"
+          aria-selected="false"
+          data-tag="a"
+          tabindex="-1"
+        >
+          a
+        </button>
+        <button
+          class="tag-tab"
+          role="tab"
+          aria-selected="false"
+          data-tag="li"
+          tabindex="-1"
+        >
+          li
+        </button>
+        <button
+          class="tag-tab"
+          role="tab"
+          aria-selected="false"
+          data-tag="blockquote"
+          tabindex="-1"
+        >
+          quote
+        </button>
+        <button
+          class="tag-tab"
+          role="tab"
+          aria-selected="false"
+          data-tag="label"
+          tabindex="-1"
+        >
+          label
+        </button>
+        <button
+          class="tag-tab"
+          role="tab"
+          aria-selected="false"
+          data-tag="td"
+          tabindex="-1"
+        >
+          td
+        </button>
+        <button
+          class="tag-tab"
+          role="tab"
+          aria-selected="false"
+          data-tag="code"
+          tabindex="-1"
+        >
+          code
+        </button>
+        <button
+          class="tag-tab"
+          role="tab"
+          aria-selected="false"
+          data-tag="div"
+          tabindex="-1"
+        >
+          div
+        </button>
+      </nav>
+
+      <!-- Style controls panel -->
+      <div class="controls" id="controls" role="tabpanel">
+        <!-- Font Size -->
+        <div class="control-row" id="fontSizeRow">
+          <label class="control-label" for="fontSizeSlider">
+            Font Size
+            <span class="control-hint" id="fontSizeHint">—</span>
+          </label>
+          <div class="slider-input-row">
+            <input
+              type="range"
+              id="fontSizeSlider"
+              min="8"
+              max="72"
+              step="1"
+              value="16"
+              aria-label="Font size in pixels"
+            />
+            <input
+              type="number"
+              id="fontSizeInput"
+              min="1"
+              max="200"
+              step="1"
+              value="16"
+              aria-label="Font size value"
+            />
+            <span class="unit-label">px</span>
+          </div>
+        </div>
+
+        <!-- Font Family -->
+        <div class="control-row">
+          <label class="control-label" for="fontFamilySelect"
+            >Font Family</label
+          >
+          <select id="fontFamilySelect" aria-label="Font family">
+            <option value="">— not set —</option>
+            <optgroup label="System UI">
+              <option value="system-ui, sans-serif">System UI</option>
+              <option value="-apple-system, BlinkMacSystemFont, sans-serif">
+                Apple System
+              </option>
+              <option value="'Segoe UI', sans-serif">Segoe UI</option>
+            </optgroup>
+            <optgroup label="Serif">
+              <option value="Georgia, serif">Georgia</option>
+              <option value="'Times New Roman', Times, serif">
+                Times New Roman
+              </option>
+              <option value="'Palatino Linotype', Palatino, serif">
+                Palatino
+              </option>
+              <option value="Garamond, serif">Garamond</option>
+              <option value="'Book Antiqua', Palatino, serif">
+                Book Antiqua
+              </option>
+              <option value="Cambria, serif">Cambria</option>
+            </optgroup>
+            <optgroup label="Sans-Serif">
+              <option value="Arial, Helvetica, sans-serif">Arial</option>
+              <option value="'Helvetica Neue', Helvetica, sans-serif">
+                Helvetica Neue
+              </option>
+              <option value="Verdana, Geneva, sans-serif">Verdana</option>
+              <option value="Tahoma, Geneva, sans-serif">Tahoma</option>
+              <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+              <option value="'Franklin Gothic Medium', sans-serif">
+                Franklin Gothic
+              </option>
+              <option value="Calibri, sans-serif">Calibri</option>
+              <option value="Optima, sans-serif">Optima</option>
+              <option value="Candara, sans-serif">Candara</option>
+            </optgroup>
+            <optgroup label="Monospace">
+              <option value="'Courier New', Courier, monospace">
+                Courier New
+              </option>
+              <option value="'Lucida Console', monospace">
+                Lucida Console
+              </option>
+              <option value="Consolas, monospace">Consolas</option>
+              <option value="'Andale Mono', monospace">Andale Mono</option>
+              <option value="Monaco, monospace">Monaco</option>
+            </optgroup>
+            <optgroup label="Other">
+              <option value="Impact, Charcoal, sans-serif">Impact</option>
+              <option value="'Comic Sans MS', cursive">Comic Sans MS</option>
+              <option value="'Arial Black', Gadget, sans-serif">
+                Arial Black
+              </option>
+              <option value="'Gill Sans', sans-serif">Gill Sans</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <!-- Line Height -->
+        <div class="control-row">
+          <label class="control-label" for="lineHeightSlider">
+            Line Height
+            <span class="control-hint" id="lineHeightHint">—</span>
+          </label>
+          <div class="slider-input-row">
+            <input
+              type="range"
+              id="lineHeightSlider"
+              min="0.5"
+              max="3.0"
+              step="0.1"
+              value="1.5"
+              aria-label="Line height multiplier"
+            />
+            <input
+              type="number"
+              id="lineHeightInput"
+              min="0.5"
+              max="5.0"
+              step="0.1"
+              value="1.5"
+              aria-label="Line height value"
+            />
+          </div>
+        </div>
+
+        <!-- Text Color -->
+        <div class="control-row">
+          <label class="control-label" for="colorPicker">Text Color</label>
+          <div class="color-row">
+            <input
+              type="color"
+              id="colorPicker"
+              value="#000000"
+              aria-label="Text color picker"
+            />
+            <input
+              type="text"
+              id="colorHex"
+              value="#000000"
+              maxlength="7"
+              placeholder="#rrggbb"
+              pattern="^#[0-9a-fA-F]{6}$"
+              aria-label="Text color hex value"
+            />
+            <button
+              class="clear-color-btn"
+              id="clearColorBtn"
+              title="Remove color override"
+              aria-label="Clear color"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+
+        <!-- Per-element reset -->
+        <div class="control-row control-row--actions">
+          <button class="btn btn--ghost" id="resetElementBtn">
+            Reset this element
+          </button>
+        </div>
+      </div>
+      <!-- /controls -->
+
+      <!-- Live preview -->
+      <div class="preview-section">
+        <div class="preview-label">Preview</div>
+        <div class="preview-box" id="previewBox">
+          The quick brown fox jumps over the lazy dog.
+        </div>
+      </div>
+    </main>
+    <!-- /main -->
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <button class="btn btn--danger" id="resetAllBtn">
+        Reset all for this site
+      </button>
+    </footer>
+
+    <!-- ===== RESET ALL CONFIRMATION DIALOG ===== -->
+    <div
+      class="dialog-backdrop"
+      id="confirmDialog"
+      hidden
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dialogTitle"
+    >
+      <div class="dialog">
+        <h2 class="dialog-title" id="dialogTitle">Reset all styles?</h2>
+        <p class="dialog-msg">
+          This will remove all custom font styles for
+          <strong id="dialogDomain"></strong>.
+        </p>
+        <div class="dialog-actions">
+          <button class="btn btn--ghost" id="cancelResetBtn">Cancel</button>
+          <button class="btn btn--danger" id="confirmResetBtn">
+            Reset all
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

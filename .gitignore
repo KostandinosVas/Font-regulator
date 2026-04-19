@@ -1,0 +1,13 @@
+# Build outputs / OS junk
+.DS_Store
+Thumbs.db
+*.zip
+
+# Node (tests only — no node_modules in this project)
+node_modules/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo

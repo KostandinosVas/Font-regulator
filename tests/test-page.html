@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Font Regulator — Manual Test Page</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        max-width: 780px;
+        margin: 40px auto;
+        padding: 0 20px;
+        background: #fafafa;
+        color: #222;
+      }
+      section {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px 24px;
+        margin-bottom: 28px;
+        background: #fff;
+      }
+      h2.section-title {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #888;
+        margin: 0 0 16px;
+      }
+      .test-id {
+        display: inline-block;
+        background: #f0f0f0;
+        border-radius: 4px;
+        font-size: 11px;
+        font-family: monospace;
+        padding: 2px 6px;
+        margin-right: 6px;
+        color: #555;
+      }
+      .pass {
+        color: green;
+        font-weight: bold;
+      }
+      .fail {
+        color: red;
+        font-weight: bold;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      td,
+      th {
+        border: 1px solid #ddd;
+        padding: 8px 12px;
+        text-align: left;
+      }
+      th {
+        background: #f5f5f5;
+        font-size: 12px;
+      }
+      pre,
+      code {
+        background: #f5f5f5;
+        border-radius: 4px;
+      }
+      pre {
+        padding: 12px;
+        overflow-x: auto;
+      }
+      code {
+        padding: 2px 5px;
+        font-size: 13px;
+      }
+      blockquote {
+        border-left: 4px solid #ccc;
+        margin: 0;
+        padding: 8px 16px;
+        color: #555;
+      }
+      .checklist {
+        list-style: none;
+        padding: 0;
+      }
+      .checklist li {
+        padding: 6px 0;
+        border-bottom: 1px solid #f0f0f0;
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+      .checklist li input[type="checkbox"] {
+        margin-top: 3px;
+        flex-shrink: 0;
+      }
+      .step {
+        font-weight: 600;
+        color: #333;
+      }
+      .expect {
+        color: #555;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="font-size: 24px; margin-bottom: 6px">
+      Font Regulator — Manual Test Page
+    </h1>
+    <p style="color: #666; margin-bottom: 32px; font-size: 13px">
+      Open the Font Regulator popup, select the element tab, make a change, and
+      verify the expected result below. Check each box as you go.
+      <strong
+        >All tests must pass before uploading to the Chrome Web Store.</strong
+      >
+    </p>
+
+    <!-- ===== ELEMENT SHOWCASE ===== -->
+    <section>
+      <h2 class="section-title">Element Showcase (all targetable types)</h2>
+      <p>
+        This is a <strong>paragraph</strong> element. Lorem ipsum dolor sit
+        amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua.
+      </p>
+      <h1>Heading H1</h1>
+      <h2>Heading H2</h2>
+      <h3>Heading H3</h3>
+      <h4>Heading H4</h4>
+      <h5>Heading H5</h5>
+      <h6>Heading H6</h6>
+      <p>
+        A <span>span element inline</span> and an
+        <a href="#">anchor link element</a>.
+      </p>
+      <ul>
+        <li>List item one</li>
+        <li>List item two</li>
+        <li>List item three</li>
+      </ul>
+      <blockquote>"A blockquote element for citation text."</blockquote>
+      <label>A label element</label>
+      <table>
+        <thead>
+          <tr>
+            <th>Table th</th>
+            <th>Table th</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Table td</td>
+            <td>Table td</td>
+          </tr>
+        </tbody>
+      </table>
+      <pre><code>code / pre element</code></pre>
+      <div style="border: 1px dashed #ccc; padding: 8px; margin-top: 12px">
+        A div element
+      </div>
+    </section>
+
+    <!-- ===== TEST CHECKLIST ===== -->
+    <section>
+      <h2 class="section-title">A — Basic Functionality</h2>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="t1" />
+          <label for="t1">
+            <span class="test-id">A1</span>
+            <span class="step">Font Size on p:</span>
+            <span class="expect"
+              >Select "p" tab → move Font Size slider to 24px → the paragraph
+              text above grows to 24px live. Reload page → still 24px.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t2" />
+          <label for="t2">
+            <span class="test-id">A2</span>
+            <span class="step">Font Family on p:</span>
+            <span class="expect"
+              >Select "p" tab → choose "Georgia" → paragraph text changes to a
+              serif font live.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t3" />
+          <label for="t3">
+            <span class="test-id">A3</span>
+            <span class="step">Line Height on p:</span>
+            <span class="expect"
+              >Select "p" tab → move Line Height to 3.0 → paragraph lines are
+              visibly spread apart.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t4" />
+          <label for="t4">
+            <span class="test-id">A4</span>
+            <span class="step">Color via picker:</span>
+            <span class="expect"
+              >Select "p" tab → click color picker → choose red (#ff0000) →
+              paragraph text turns red.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t5" />
+          <label for="t5">
+            <span class="test-id">A5</span>
+            <span class="step">Color via hex input:</span>
+            <span class="expect"
+              >Type "#0000ff" in the hex field → paragraph text turns blue.
+              Color picker dot updates to blue.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t6" />
+          <label for="t6">
+            <span class="test-id">A6</span>
+            <span class="step">Only changed properties apply:</span>
+            <span class="expect"
+              >Reset all → select "p" → ONLY set color to red (do not touch font
+              size or line height sliders) → paragraph text is red but font size
+              and line height are UNCHANGED from the page default (not forced to
+              16px/1.5).</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t7" />
+          <label for="t7">
+            <span class="test-id">A7</span>
+            <span class="step">Headings independently:</span>
+            <span class="expect"
+              >Set h1 font size to 48px and h2 font size to 32px → both apply
+              correctly and independently. p is unchanged.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t8" />
+          <label for="t8">
+            <span class="test-id">A8</span>
+            <span class="step">Live preview box:</span>
+            <span class="expect"
+              >As you change controls, the "Preview" box in the popup updates in
+              real-time without needing to save.</span
+            >
+          </label>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="section-title">B — Persistence</h2>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="t9" />
+          <label for="t9">
+            <span class="test-id">B1</span>
+            <span class="step">Survives reload:</span>
+            <span class="expect"
+              >Set p color to red → reload this page → text is still red (styles
+              re-applied from storage on load).</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t10" />
+          <label for="t10">
+            <span class="test-id">B2</span>
+            <span class="step">Domain isolation:</span>
+            <span class="expect"
+              >Set styles here → open google.com → Font Regulator shows no
+              styles for google.com. Text on Google is unchanged.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t11" />
+          <label for="t11">
+            <span class="test-id">B3</span>
+            <span class="step">New tab same domain:</span>
+            <span class="expect"
+              >Set styles → open a new tab to the same file → styles are already
+              applied when the page loads.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t12" />
+          <label for="t12">
+            <span class="test-id">B4</span>
+            <span class="step">Popup state persists:</span>
+            <span class="expect"
+              >Set p font size to 30px → close popup → reopen popup → p tab
+              shows the saved value (30px), not —.</span
+            >
+          </label>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="section-title">C — Enable / Disable Toggle</h2>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="t13" />
+          <label for="t13">
+            <span class="test-id">C1</span>
+            <span class="step">Disable removes styles:</span>
+            <span class="expect"
+              >With styles set → flip toggle off → all custom styles instantly
+              removed from the page. Text returns to defaults.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t14" />
+          <label for="t14">
+            <span class="test-id">C2</span>
+            <span class="step">Re-enable restores styles:</span>
+            <span class="expect"
+              >After disabling → flip toggle on → all styles are applied again
+              immediately.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t15" />
+          <label for="t15">
+            <span class="test-id">C3</span>
+            <span class="step">Disabled state persists:</span>
+            <span class="expect"
+              >Disable → reload page → styles are NOT applied on load. Popup
+              opens with toggle still off.</span
+            >
+          </label>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="section-title">D — Reset Actions</h2>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="t16" />
+          <label for="t16">
+            <span class="test-id">D1</span>
+            <span class="step">Reset this element:</span>
+            <span class="expect"
+              >Set p font size to 30px and color to red → click "Reset this
+              element" → p returns to page default. Other elements (e.g. h1)
+              unchanged.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t17" />
+          <label for="t17">
+            <span class="test-id">D2</span>
+            <span class="step">Reset all — confirm:</span>
+            <span class="expect"
+              >Set styles on p and h1 → click "Reset all for this site" → dialog
+              appears → click "Reset all" → all styles removed from page and
+              storage.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t18" />
+          <label for="t18">
+            <span class="test-id">D3</span>
+            <span class="step">Reset all — cancel:</span>
+            <span class="expect"
+              >Click "Reset all for this site" → dialog appears → click "Cancel"
+              → dialog closes, styles are UNCHANGED.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t19" />
+          <label for="t19">
+            <span class="test-id">D4</span>
+            <span class="step">Clear color button:</span>
+            <span class="expect"
+              >Set a color → click ✕ next to the hex field → color is removed
+              from the rule. Hex field clears. Next save does not include
+              color.</span
+            >
+          </label>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="section-title">E — Edge Cases</h2>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="t20" />
+          <label for="t20">
+            <span class="test-id">E1</span>
+            <span class="step">chrome:// page:</span>
+            <span class="expect"
+              >Open chrome://extensions → click Font Regulator icon → popup
+              shows "Font Regulator cannot run on browser pages." Toggle is
+              greyed out.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t21" />
+          <label for="t21">
+            <span class="test-id">E2</span>
+            <span class="step">Absent element dimming:</span>
+            <span class="expect"
+              >Open a page with no &lt;code&gt; tags → "code" tab is visually
+              dimmed in the popup.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t22" />
+          <label for="t22">
+            <span class="test-id">E3</span>
+            <span class="step">Extension reload mid-session:</span>
+            <span class="expect"
+              >With a page open → reload the extension in chrome://extensions →
+              reopen popup → change a style → it works without needing to reload
+              the page.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t23" />
+          <label for="t23">
+            <span class="test-id">E4</span>
+            <span class="step">Has-rule dot:</span>
+            <span class="expect"
+              >Set a style on "p" → a blue dot (•) appears on the "p" tab. Reset
+              p → dot disappears.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t24" />
+          <label for="t24">
+            <span class="test-id">E5</span>
+            <span class="step">Escape / backdrop closes dialog:</span>
+            <span class="expect"
+              >Open "Reset all" dialog → press Escape → dialog closes. Also test
+              clicking the dark backdrop.</span
+            >
+          </label>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="section-title">
+        F — Security (verify via DevTools → Application → Storage)
+      </h2>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox" id="t25" />
+          <label for="t25">
+            <span class="test-id">F1</span>
+            <span class="step">Injected &lt;style&gt; tag only:</span>
+            <span class="expect"
+              >Open DevTools → Elements → search for
+              "font-regulator-injected-styles" → only ONE &lt;style&gt; tag
+              exists. Its content is valid CSS with only whitelisted
+              selectors.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t26" />
+          <label for="t26">
+            <span class="test-id">F2</span>
+            <span class="step">No inline styles injected on elements:</span>
+            <span class="expect"
+              >The extension never adds inline style="" attributes to &lt;p&gt;
+              or other elements — only the single &lt;style&gt; block is
+              used.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t27" />
+          <label for="t27">
+            <span class="test-id">F3</span>
+            <span class="step">Storage shape is clean:</span>
+            <span class="expect"
+              >DevTools → Application → Storage → Extension storage → Local →
+              check "sites" key → value matches the expected structure:
+              <code
+                >{ "hostname": { enabled: true, rules: { "p": { color: "#..." }
+                } } }</code
+              >. No unexpected keys.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t28" />
+          <label for="t28">
+            <span class="test-id">F4</span>
+            <span class="step">No console errors during normal use:</span>
+            <span class="expect"
+              >Open DevTools → Console (set to "All levels") → use the extension
+              normally → no red errors appear.</span
+            >
+          </label>
+        </li>
+
+        <li>
+          <input type="checkbox" id="t29" />
+          <label for="t29">
+            <span class="test-id">F5</span>
+            <span class="step">Run Node.js security tests:</span>
+            <span class="expect"
+              >Run <code>node tests/sanitizer.test.js</code> in terminal → all
+              tests PASS (green output).</span
+            >
+          </label>
+        </li>
+      </ul>
+    </section>
+
+    <p style="color: #888; font-size: 12px; margin-top: 32px">
+      Font Regulator Test Page — for development use only. Not included in the
+      published extension zip.
+    </p>
+  </body>
+</html>
