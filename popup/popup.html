@@ -33,6 +33,14 @@
       </label>
     </header>
 
+    <!-- ===== RELOAD BANNER (shown when content script not yet running) ===== -->
+    <div class="reload-banner" id="reloadBanner" hidden role="status">
+      <span class="reload-banner__text"
+        >Reload this tab to activate Font Regulator.</span
+      >
+      <button class="reload-banner__btn" id="reloadBtn">Reload now</button>
+    </div>
+
     <!-- ===== DISABLED OVERLAY ===== -->
     <div class="disabled-overlay" id="disabledOverlay" hidden>
       <p>

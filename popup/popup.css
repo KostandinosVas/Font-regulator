@@ -60,7 +60,47 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ---------- Header ---------- */
+/* ---------- Reload Banner ---------- */
+.reload-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 14px;
+  background: #2e2412;
+  border-bottom: 1px solid #5a4010;
+  color: #f0c060;
+  font-size: 12px;
+}
+
+.reload-banner__text {
+  flex: 1;
+  line-height: 1.4;
+}
+
+.reload-banner__btn {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  background: #f0c060;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: #1a1000;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.reload-banner__btn:hover {
+  background: #ffd070;
+}
+
+.reload-banner__btn:focus-visible {
+  outline: 2px solid #ffd070;
+  outline-offset: 2px;
+}
+
+/* ---------- Header ---------- -->
 .header {
   display: flex;
   align-items: center;

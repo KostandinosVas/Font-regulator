@@ -5,8 +5,7 @@
   "description": "Customize font size, family, line height, and text color for any element type on any website.",
   "permissions": [
     "storage",
-    "activeTab",
-    "scripting"
+    "activeTab"
   ],
   "background": {
     "service_worker": "background/service-worker.js"

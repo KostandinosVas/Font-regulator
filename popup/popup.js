@@ -61,6 +61,14 @@ function sanitizeFontFamily(val) {
 }
 
 // ---------------------------------------------------------------------------
+// Reload Banner
+// ---------------------------------------------------------------------------
+
+function showReloadBanner() {
+  if (reloadBanner) reloadBanner.hidden = false;
+}
+
+// ---------------------------------------------------------------------------
 // DOM References
 // ---------------------------------------------------------------------------
 
@@ -94,6 +102,8 @@ const confirmDialog    = $('confirmDialog');
 const dialogDomain     = $('dialogDomain');
 const cancelResetBtn   = $('cancelResetBtn');
 const confirmResetBtn  = $('confirmResetBtn');
+const reloadBanner     = $('reloadBanner');
+const reloadBtn        = $('reloadBtn');
 
 const tagTabs = Array.from(document.querySelectorAll('.tag-tab'));
 
@@ -124,39 +134,32 @@ function saveSiteData(domain, data) {
 // Content Script Messaging
 // ---------------------------------------------------------------------------
 
+// Set to true when the content script is unreachable (tab pre-dates install).
+// The reload banner is shown in this state.
+let needsReload = false;
+
 async function sendToContentScript(message) {
-  if (!activeTabId) return;
+  if (!activeTabId || needsReload) return;
   try {
     await chrome.tabs.sendMessage(activeTabId, message);
   } catch {
-    // Content script missing (tab was open before install/reload) — inject and retry.
-    try {
-      await chrome.scripting.executeScript({
-        target: { tabId: activeTabId },
-        files: ['content/content.js']
-      });
-      await chrome.tabs.sendMessage(activeTabId, message);
-    } catch {
-      // Restricted page (chrome://, file://) — silently ignore.
-    }
+    // Content script unreachable — tab was open before the extension installed.
+    // We no longer auto-inject (that required the `scripting` permission).
+    // Show the reload banner instead.
+    needsReload = true;
+    showReloadBanner();
   }
 }
 
 async function getPageInfo() {
   if (!activeTabId) return { presentTags: [], domain: '' };
   try {
-    return await chrome.tabs.sendMessage(activeTabId, { type: 'getPageInfo' });
+    const result = await chrome.tabs.sendMessage(activeTabId, { type: 'getPageInfo' });
+    return result;
   } catch {
-    // Content script missing — inject and retry once.
-    try {
-      await chrome.scripting.executeScript({
-        target: { tabId: activeTabId },
-        files: ['content/content.js']
-      });
-      return await chrome.tabs.sendMessage(activeTabId, { type: 'getPageInfo' });
-    } catch {
-      return { presentTags: [], domain: '' };
-    }
+    // Content script not yet running on this tab — user needs to reload.
+    needsReload = true;
+    return { presentTags: [], domain: '' };
   }
 }
 
@@ -511,6 +514,12 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+// Reload banner button — reloads the active tab, which re-injects the content script
+reloadBtn.addEventListener('click', () => {
+  chrome.tabs.reload(activeTabId);
+  window.close();
+});
+
 // ---------------------------------------------------------------------------
 // Initialisation
 // ---------------------------------------------------------------------------
@@ -556,6 +565,9 @@ async function init() {
 
   // Get which tags are present on the page
   const info = await getPageInfo();
+  if (needsReload) {
+    showReloadBanner();
+  }
   if (info && info.presentTags) {
     presentTags = new Set(info.presentTags);
   }
