@@ -4,25 +4,25 @@
 
 /* ---------- CSS Custom Properties ---------- */
 :root {
-  --bg: #1e1e2e;
-  --bg-surface: #27273a;
-  --bg-elevated: #313148;
-  --border: #3d3d58;
-  --border-light: #4a4a68;
-  --accent: #7c6af7;
-  --accent-hover: #9587f9;
-  --accent-dim: rgba(124, 106, 247, 0.18);
-  --danger: #e05c6a;
-  --danger-hover: #ea7a85;
-  --text-primary: #e8e8f5;
-  --text-secondary: #9898b8;
-  --text-dim: #5e5e80;
-  --tab-inactive: #3a3a52;
-  --tab-absent: #2a2a3e;
+  --bg: #f5f4ff;
+  --bg-surface: #ffffff;
+  --bg-elevated: #eeecfd;
+  --border: #dddaf8;
+  --border-light: #c9c4f5;
+  --accent: #7f77dd;
+  --accent-hover: #6b62cc;
+  --accent-dim: rgba(127, 119, 221, 0.12);
+  --danger: #dc3545;
+  --danger-hover: #b02231;
+  --text-primary: #1c1940;
+  --text-secondary: #5e5a84;
+  --text-dim: #a09cbf;
+  --tab-inactive: #eeecfd;
+  --tab-absent: #f8f7ff;
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
-  --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow: 0 4px 24px rgba(127, 119, 221, 0.18);
   --transition: 150ms ease;
   --popup-width: 360px;
 }
@@ -67,9 +67,9 @@ body {
   justify-content: space-between;
   gap: 10px;
   padding: 9px 14px;
-  background: #2e2412;
-  border-bottom: 1px solid #5a4010;
-  color: #f0c060;
+  background: #fffbeb;
+  border-bottom: 1px solid #fcd34d;
+  color: #92400e;
   font-size: 12px;
 }
 
@@ -81,10 +81,10 @@ body {
 .reload-banner__btn {
   flex-shrink: 0;
   padding: 4px 10px;
-  background: #f0c060;
+  background: #f59e0b;
   border: none;
   border-radius: var(--radius-sm);
-  color: #1a1000;
+  color: #fff;
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
@@ -92,15 +92,15 @@ body {
 }
 
 .reload-banner__btn:hover {
-  background: #ffd070;
+  background: #d97706;
 }
 
 .reload-banner__btn:focus-visible {
-  outline: 2px solid #ffd070;
+  outline: 2px solid #d97706;
   outline-offset: 2px;
 }
 
-/* ---------- Header ---------- -->
+/* ---------- Header ---------- */
 .header {
   display: flex;
   align-items: center;
@@ -108,6 +108,7 @@ body {
   padding: 12px 14px;
   border-bottom: 1px solid var(--border);
   background: var(--bg-surface);
+  box-shadow: 0 1px 0 var(--border);
 }
 
 .header-title {
@@ -329,7 +330,7 @@ body {
   appearance: none;
   -webkit-appearance: none;
   height: 4px;
-  background: var(--border-light);
+  background: var(--border);
   border-radius: 2px;
   outline: none;
   cursor: pointer;
@@ -341,7 +342,8 @@ body {
   height: 16px;
   border-radius: 50%;
   background: var(--accent);
-  border: 2px solid #fff;
+  border: 2px solid var(--bg-surface);
+  box-shadow: 0 1px 4px rgba(127, 119, 221, 0.35);
   cursor: pointer;
   transition:
     background var(--transition),
@@ -570,17 +572,17 @@ input[type="color"]:focus-visible {
 .dialog-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(90, 80, 180, 0.22);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(3px);
 }
 
 .dialog {
   background: var(--bg-surface);
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 20px;
   width: 280px;
@@ -627,4 +629,20 @@ input[type="color"]:focus-visible {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
+}
+
+/* ---------- Light-theme accent strip on header ---------- */
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #7f77dd 0%, #5dcaa5 100%);
+  border-radius: 0;
+}
+
+.header {
+  position: relative;
 }
