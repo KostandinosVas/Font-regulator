@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Font Regulator",
+  "name": "Typly",
   "version": "1.0.0",
   "description": "Customize font size, family, line height, and text color for any element type on any website.",
   "permissions": [
@@ -25,7 +25,7 @@
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
     },
-    "default_title": "Font Regulator"
+    "default_title": "Typly"
   },
   "icons": {
     "16": "icons/icon16.png",
