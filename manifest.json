@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Customize font size, family, line height, and text color for any element type on any website.",
   "permissions": [
-    "storage",
+    "storage", 
     "activeTab"
   ],
   "background": {
@@ -34,3 +34,5 @@
     "128": "icons/icon128.png"
   }
 }
+
+

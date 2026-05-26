@@ -6,6 +6,12 @@
  * Listens for messages from the popup for live updates.
  */
 
+// Τι ακριβως κανει αυτο το αρχειο:
+// Αυτό το αρχείο είναι ένα content script για την επέκταση Font Regulator.
+// Τρέχει σε κάθε σελίδα, διαβάζει κανόνες γραμματοσειράς από το chrome.storage.local,
+// δημιουργεί ασφαλές CSS και το εισάγει μέσω ενός <style> στοιχείου.
+// Ακούει μηνύματα από το popup για ζωντανές ενημερώσεις.
+
 (function () {
   'use strict';
 
